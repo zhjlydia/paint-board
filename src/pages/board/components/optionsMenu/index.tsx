@@ -86,7 +86,7 @@ const OptionsCard: React.FC<IProps> = ({ board, optionsType, setOptionsType }) =
 
   return (
     <div className={styles.optionMenu}>
-      <div className="flex">
+      <div className="flex items-center">
         {/* 类型切换 */}
         <div className={styles.btnGroup}>
           <div
@@ -95,7 +95,9 @@ const OptionsCard: React.FC<IProps> = ({ board, optionsType, setOptionsType }) =
             })}
             onClick={() => setOptionsType(CANVAS_ELE_TYPE.FREE_LINE)}
           >
-            <PenIcon />
+            <div className="tooltip" data-tip="画笔">
+              <PenIcon />
+            </div>
           </div>
           <div
             className={classNames(styles.btn, {
@@ -103,7 +105,9 @@ const OptionsCard: React.FC<IProps> = ({ board, optionsType, setOptionsType }) =
             })}
             onClick={() => setOptionsType(CANVAS_ELE_TYPE.CLEAN_LINE)}
           >
-            <EraserIcon />
+            <div className="tooltip" data-tip="橡皮擦">
+              <EraserIcon />
+            </div>
           </div>
         </div>
         {/* 颜色设置 */}
@@ -124,10 +128,9 @@ const OptionsCard: React.FC<IProps> = ({ board, optionsType, setOptionsType }) =
       </div>
       {/* 宽度设置 */}
       <div className="mt-3">
-        <div className="font-bold">width</div>
         <div className={styles.btnGroup}>
           {Object.values(CommonWidth).map((w) => (
-            <button
+            <div
               key={w}
               className={classNames(styles.btn, {
                 'p-3': true,
@@ -146,14 +149,13 @@ const OptionsCard: React.FC<IProps> = ({ board, optionsType, setOptionsType }) =
                 }}
                 key={w}
               ></div>
-            </button>
+            </div>
           ))}
         </div>
       </div>
       {/* 操作画板 */}
       <div className="mt-3">
-        <div className="font-bold">tool</div>
-        <ul className="menu menu-horizontal bg-base-100 rounded-box justify-between mt-1">
+        <ul className="flex justify-between mt-1">
           <li>
             <a onClick={undo}>
               <div className="tooltip" data-tip="后退">
